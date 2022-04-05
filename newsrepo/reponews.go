@@ -10,7 +10,7 @@ import (
 )
 
 type NewsRepository interface {
-	FindNewsReport(country string, page int) (model.NewsFile, error, int)
+	FindNewsReport(country string, page int) (model.NewsFile, int, error)
 }
 
 type repository struct {
