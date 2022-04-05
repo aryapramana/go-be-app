@@ -50,20 +50,21 @@ func GetDisplayPhoneData(c *gin.Context) {
 
 func GetNewsReport(c *gin.Context) {
 	country_id := c.Query("country")
+	page := c.Query("page")
 	var data_error error
 
 	news_repository := newsrepo.NewsObjRepository(dbconnect.InitApiClient())
 
-	news_trending, data_error := news_repository.FindNewsReport(country_id)
+	news_trending, http_code, data_error := news_repository.FindNewsReport(country_id, page)
 	if data_error != nil {
 		fmt.Println(data_error)
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status": news_trending.Status,
-		"total":  news_trending.TotalResults,
-		"data":   news_trending.Articles,
+	c.JSON(http_code, gin.H{
+		"status": news_trending.GetStatus(),
+		"total":  len(news_trending.GetArticlesMapping()),
+		"data":   news_trending.GetArticlesMapping(),
 	})
 
 }

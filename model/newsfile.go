@@ -1,23 +1,31 @@
 package model
 
-import "time"
-
 type NewsFile struct {
 	Status       string     `json:"status"`
 	TotalResults int        `json:"totalResults"`
 	Articles     []Articles `json:"articles"`
 }
-type Source struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+
+func (newsfile *NewsFile) SetStatus(Status string) {
+	newsfile.Status = Status
 }
-type Articles struct {
-	Source      Source    `json:"source"`
-	Author      string    `json:"author"`
-	Title       string    `json:"title"`
-	Description string    `json:"description"`
-	URL         string    `json:"url"`
-	URLToImage  string    `json:"urlToImage"`
-	PublishedAt time.Time `json:"publishedAt"`
-	Content     string    `json:"content"`
+
+func (newsfile NewsFile) GetStatus() string {
+	return newsfile.Status
+}
+
+func (newsfile *NewsFile) SetTotalResults(TotalResults int) {
+	newsfile.TotalResults = TotalResults
+}
+
+func (newsfile NewsFile) GetTotalResults() int {
+	return newsfile.TotalResults
+}
+
+func (newsfile *NewsFile) SetArticles(Articles []Articles) {
+	newsfile.Articles = Articles
+}
+
+func (newsfile NewsFile) GetArticles() []Articles {
+	return newsfile.Articles
 }
