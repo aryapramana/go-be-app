@@ -2,6 +2,8 @@
 **Middleware App - API Station With Go**
 
 
+[Check here for Java version of this app](https://github.com/aryapramana/java-mid-app)
+
 Pre-requisite:
 1. Go to commonfile\constantconfig.go and replace the api_key with your personal key
 2. Go to dbconnect\conndb.go and replace the connection with your personal db
